@@ -33,7 +33,7 @@ void matriz() {
 	//imprimo
 	for (int i = 0;i < filas;i++) {
 		for (int j = 0;j < columnas;j++) {
-			if (i == 0 || i == filas - 1 || j == 0 || j == columnas -1) {
+			if (i == 0 || i == filas - 1 || j == 0 || j == columnas-1||i==(filas/2)-1&&j==(columnas/2)-1) {
 				cout << "[" << c[i][j] << "]";
 			}
 			else if (i == 0 && j == 0 || i == filas - 1 && j == columnas - 1 || i == 0 && j == columnas - 1 || i == filas - 1 && j == 0) {
@@ -56,14 +56,18 @@ void matriz() {
 			cin >> opcion;
 			switch (opcion) {
 				case 1:{
-
+					cout << "Cuanta velocidad quieres aumentar:" << endl;
+					cin >> velocidad;
 					break;}
 				case 2: {
-
+					int reducir = 0;
+					cout << "Cuanta velocidad desea reducir: " << endl;
+					cin >> reducir;
+					velocidad = velocidad - reducir;
 					break;
 				}
 				case 3: {
-
+					
 				}break;
 				case 4: {
 
@@ -73,7 +77,49 @@ void matriz() {
 		}
 	
 }
+
 void cubo() {
+	int X;
+	int Y;
+	int Z;
+	cout << "Ingrese el tamano del tesaracto en la simulacion(numero par entre 5 y 15):";
+	cin >> X;
+	while (X % 2 == 0 || X < 5 || X>15) {
+		cout << "Ingrese el tamano del tesaracto en la simulacion(numero par entre 5 y 15):";
+		cin >> X;
+	}
+	cin >> X;
+	Y = X;
+	Z = X;
+	char*** c = new char** [X];
+	for (int i = 0; i < X; i++) {
+		c[i] = new char* [Y];
+		for (int j = 0; j < Y; j++)
+			c[i][j] = new char[Z];
+	}
+
+	for (int i = 0; i < X; i++) {
+		for (int j = 0; j < Y; j++) {
+			for (int k = 0; k < Z; k++) {
+				c[0][j][k] = '*';
+				c[X - 1][j][k] = '*';
+			}
+		}
+	}
+	//imprimir
+	int contador = 1;
+	for (int i = 0; i < X; i++) {
+		cout << "Capa " << i << ":" << endl;
+		for (int j = 0; j < Y; j++) {
+			for (int k = 0; k < Z; k++) {
+				contador++;
+				cout << "Fase No." << i;
+				cout << c[i][j][k];
+
+			}
+		}
+		cout << endl;
+	}
 
 }
 int main()
@@ -89,17 +135,18 @@ int main()
 		cin >> opcion;
 		switch (opcion) {
 		case 1: {
-			cout <<"BIENVENIDO EL ACELERADOR DE PARTICULAS";
+			cout << "BIENVENIDO EL ACELERADOR DE PARTICULAS" << endl;;
 			while (opcion) {
 				matriz();
 			}
 			break;}
 		case 2: {
-
+			cout << "BIENVENIDO A EL TESERACTO SIMULADO" << endl;
+			cubo();
 			break;
 		}
 		case 3: {
-
+			cout << "BIENVENIDO A EL SIMULADOR DE CADENAS DE GENOMA" << endl;
 			break;
 		}
 		}
